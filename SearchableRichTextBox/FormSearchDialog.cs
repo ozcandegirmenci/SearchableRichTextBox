@@ -73,9 +73,12 @@ namespace System.Windows.Forms
             var flags = RichTextBoxFinds.None;
             foreach (var ctrl in Controls)
             {
-                if (ctrl is CheckBox chkBox && chkBox.Checked)
+                if (ctrl is CheckBox)
                 {
-                    flags |= (RichTextBoxFinds)Convert.ToInt32(chkBox.Tag);
+                    CheckBox chkBox = ctrl as CheckBox;
+                    if (chkBox.Checked) {
+                        flags |= (RichTextBoxFinds)Convert.ToInt32(chkBox.Tag);
+                    }
                 }
             }
             var start = _Owner.SelectionStart + _Owner.SelectionLength;
